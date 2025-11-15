@@ -1,0 +1,1852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finova - AI-Powered Financial Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #059669;
+            --secondary-dark: #047857;
+            --accent: #7c3aed;
+            --accent-dark: #6d28d9;
+            --warning: #d97706;
+            --warning-dark: #b45309;
+            --light: #f8fafc;
+            --dark: #0f172a;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --white: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--gray-700);
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--gray-100);
+            transition: all 0.3s ease;
+        }
+
+        .nav-scrolled {
+            box-shadow: var(--shadow);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 4rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: var(--dark);
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo i {
+            color: var(--primary);
+            margin-right: 0.5rem;
+            font-size: 1.75rem;
+        }
+
+        .nav-links {
+            display: none;
+        }
+
+        .nav-links a {
+            color: var(--gray-700);
+            text-decoration: none;
+            margin: 0 1rem;
+            transition: color 0.3s;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-button {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            box-shadow: var(--shadow);
+        }
+
+        .nav-button:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .mobile-menu-btn {
+            display: block;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray-700);
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-menu-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .mobile-menu {
+            display: none;
+            background-color: var(--white);
+            border-top: 1px solid var(--gray-100);
+            padding: 1rem;
+            animation: slideDown 0.3s ease;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu a {
+            display: block;
+            color: var(--gray-700);
+            text-decoration: none;
+            padding: 0.75rem 0;
+            transition: color 0.3s;
+            font-weight: 500;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .mobile-menu a:hover {
+            color: var(--primary);
+        }
+
+        .mobile-menu .nav-button {
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding-top: 8rem;
+            padding-bottom: 5rem;
+            background: linear-gradient(135deg, var(--primary) 0%, #3b82f6 50%, var(--accent) 100%);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" opacity="0.1"><polygon fill="white" points="0,1000 1000,0 1000,1000"/></svg>');
+            background-size: cover;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 64rem;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: var(--white);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            margin-bottom: 2rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+            animation: pulse 2s infinite;
+        }
+
+        .hero-badge i {
+            font-size: 0.875rem;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #fbbf24, #f59e0b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            max-width: 32rem;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 4rem;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .btn-primary {
+            background-color: var(--white);
+            color: var(--primary);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            border: none;
+            font-size: 1.125rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            font-size: 1.125rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .trusted-by {
+            margin-top: 4rem;
+            animation: fadeIn 1s ease 0.6s both;
+        }
+
+        .trusted-by p {
+            font-size: 0.875rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 500;
+            opacity: 0.8;
+        }
+
+        .logos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .logo-item {
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 600;
+            font-size: 1.125rem;
+            transition: color 0.3s;
+        }
+
+        .logo-item:hover {
+            color: var(--white);
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 5rem 1rem;
+            background-color: var(--white);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 1rem;
+            background: var(--light);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 4rem;
+            height: 4rem;
+            border-radius: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .stat-icon i {
+            font-size: 1.5rem;
+        }
+
+        .stat-value {
+            font-size: 2.25rem;
+            font-weight: bold;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--gray-600);
+            font-weight: 500;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 5rem 1rem;
+            background: linear-gradient(135deg, var(--gray-50), var(--white));
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .section-description {
+            font-size: 1.25rem;
+            color: var(--gray-600);
+            max-width: 42rem;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background-color: var(--white);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            border: 1px solid var(--gray-100);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            box-shadow: var(--shadow-xl);
+            transform: translateY(-5px);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .feature-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 4rem;
+            height: 4rem;
+            border-radius: 1rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: var(--white);
+        }
+
+        .feature-icon i {
+            font-size: 1.5rem;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--dark);
+            margin-bottom: 0.75rem;
+        }
+
+        .feature-description {
+            color: var(--gray-600);
+            line-height: 1.6;
+        }
+
+        /* Platform Section */
+        .platform {
+            padding: 5rem 1rem;
+            background-color: var(--white);
+        }
+
+        .platform-grid {
+            display: grid;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .platform-content h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .platform-content p {
+            font-size: 1.25rem;
+            color: var(--gray-600);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .platform-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .platform-tool {
+            background: linear-gradient(135deg, var(--primary-light), var(--accent-light));
+            border-radius: 1rem;
+            padding: 1.5rem;
+            transition: all 0.3s;
+            border: 1px solid var(--gray-100);
+        }
+
+        .platform-tool:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-5px);
+        }
+
+        .tool-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 0.75rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .tool-icon i {
+            font-size: 1.25rem;
+        }
+
+        .tool-title {
+            font-weight: bold;
+            color: var(--dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .tool-description {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+        }
+
+        .benefit-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .benefit-check {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 9999px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            flex-shrink: 0;
+            margin-top: 0.125rem;
+        }
+
+        .benefit-check span {
+            color: var(--white);
+            font-size: 0.75rem;
+        }
+
+        .benefit-text {
+            color: var(--gray-700);
+        }
+
+        /* New Finance Sections */
+        .finance-tools {
+            padding: 5rem 1rem;
+            background: linear-gradient(135deg, var(--gray-50), var(--white));
+        }
+
+        .tools-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .tool-card {
+            background: var(--white);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            border: 1px solid var(--gray-100);
+            text-align: center;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .tool-card i {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .tool-card h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .tool-card p {
+            color: var(--gray-600);
+            margin-bottom: 1.5rem;
+        }
+
+        .tool-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.3s;
+        }
+
+        .tool-link:hover {
+            gap: 0.75rem;
+        }
+
+        .investment-strategies {
+            padding: 5rem 1rem;
+            background-color: var(--white);
+        }
+
+        .strategies-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .strategy-card {
+            background: var(--white);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            border: 1px solid var(--gray-100);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .strategy-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .strategy-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .strategy-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .strategy-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 4rem;
+            height: 4rem;
+            border-radius: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: var(--white);
+            margin-bottom: 1.5rem;
+        }
+
+        .strategy-icon i {
+            font-size: 1.5rem;
+        }
+
+        .strategy-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .strategy-description {
+            color: var(--gray-600);
+            margin-bottom: 1.5rem;
+        }
+
+        .strategy-features {
+            list-style: none;
+        }
+
+        .strategy-features li {
+            padding: 0.5rem 0;
+            color: var(--gray-600);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .strategy-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 5rem 1rem;
+            background: linear-gradient(135deg, var(--gray-50), var(--white));
+        }
+
+        .pricing-grid {
+            display: grid;
+            gap: 2rem;
+            max-width: 72rem;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background-color: var(--white);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            position: relative;
+            border: 1px solid var(--gray-100);
+        }
+
+        .pricing-card:hover {
+            box-shadow: var(--shadow-xl);
+            transform: translateY(-5px);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            color: var(--white);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        .popular-badge i {
+            font-size: 0.875rem;
+        }
+
+        .popular {
+            border: 2px solid var(--primary);
+        }
+
+        .pricing-header {
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .pricing-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-description {
+            color: var(--gray-600);
+        }
+
+        .pricing-price {
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--dark);
+        }
+
+        .price-period {
+            color: var(--gray-600);
+        }
+
+        .pricing-button {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            box-shadow: var(--shadow);
+        }
+
+        .primary-button {
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            color: var(--white);
+        }
+
+        .primary-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .secondary-button {
+            background-color: var(--gray-100);
+            color: var(--gray-900);
+        }
+
+        .secondary-button:hover {
+            background-color: var(--gray-200);
+        }
+
+        .features-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .feature-check {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.25rem;
+            height: 1.25rem;
+            border-radius: 9999px;
+            background-color: var(--primary-light);
+            flex-shrink: 0;
+            margin-top: 0.125rem;
+            color: var(--primary);
+            font-size: 0.75rem;
+        }
+
+        .feature-text {
+            color: var(--gray-700);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding-top: 4rem;
+            padding-bottom: 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo i {
+            color: var(--primary);
+            margin-right: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .footer-logo span {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .footer-about {
+            color: var(--gray-400);
+            margin-bottom: 1rem;
+            max-width: 20rem;
+        }
+
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--gray-400);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-item i {
+            font-size: 1rem;
+        }
+
+        .footer-links h3 {
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .footer-links ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--gray-400);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--gray-800);
+            padding-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .copyright {
+            color: var(--gray-400);
+            font-size: 0.875rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--gray-400);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--white);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-1 {
+            transition-delay: 0.2s;
+        }
+
+        .delay-2 {
+            transition-delay: 0.4s;
+        }
+
+        .delay-3 {
+            transition-delay: 0.6s;
+        }
+
+        /* Responsive Design */
+        @media (min-width: 640px) {
+            .hero-buttons {
+                flex-direction: row;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .tools-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .strategies-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-bottom {
+                flex-direction: row;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+                align-items: center;
+            }
+            
+            .mobile-menu-btn {
+                display: none;
+            }
+            
+            .hero-title {
+                font-size: 3.75rem;
+            }
+            
+            .pricing-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .platform-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .hero-title {
+                font-size: 4.5rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .features-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .tools-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .strategies-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .footer-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-chart-line"></i>
+                <span>Finova</span>
+            </a>
+            
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#platform">Platform</a>
+                <a href="#tools">Tools</a>
+                <a href="#strategies">Strategies</a>
+                <a href="#pricing">Pricing</a>
+                <button class="nav-button">Get Started</button>
+            </div>
+            
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <div class="mobile-menu">
+            <a href="#features">Features</a>
+            <a href="#platform">Platform</a>
+            <a href="#tools">Tools</a>
+            <a href="#strategies">Strategies</a>
+            <a href="#pricing">Pricing</a>
+            <button class="nav-button">Get Started</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-robot"></i>
+                    <span>AI-Powered Financial Intelligence</span>
+                </div>
+                
+                <h1 class="hero-title">
+                    Smarter <span class="gradient-text">Financial</span> Decisions
+                </h1>
+                
+                <p class="hero-description">
+                    All-in-one platform to manage, grow, and protect your wealth with AI-powered financial tools and insights
+                </p>
+                
+                <div class="hero-buttons">
+                    <button class="btn-primary">
+                        Start Free Trial
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <button class="btn-secondary">Watch Demo</button>
+                </div>
+                
+                <div class="trusted-by">
+                    <p>Trusted by leading financial institutions</p>
+                    <div class="logos">
+                        <div class="logo-item">Goldman Sachs</div>
+                        <div class="logo-item">J.P. Morgan</div>
+                        <div class="logo-item">Morgan Stanley</div>
+                        <div class="logo-item">BlackRock</div>
+                        <div class="logo-item">Fidelity</div>
+                        <div class="logo-item">Vanguard</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item fade-in">
+                    <div class="stat-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="stat-value">500K+</div>
+                    <div class="stat-label">Active Investors</div>
+                </div>
+                
+                <div class="stat-item fade-in delay-1">
+                    <div class="stat-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="stat-value">25% Avg.</div>
+                    <div class="stat-label">Annual Returns</div>
+                </div>
+                
+                <div class="stat-item fade-in delay-2">
+                    <div class="stat-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="stat-value">$50B+</div>
+                    <div class="stat-label">Assets Protected</div>
+                </div>
+                
+                <div class="stat-item fade-in delay-3">
+                    <div class="stat-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="stat-value">24/7</div>
+                    <div class="stat-label">AI Monitoring</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">
+                    Everything You Need for <span class="gradient-text">Financial Success</span>
+                </h2>
+                <p class="section-description">
+                    Powerful features designed to help you make smarter financial decisions and grow your wealth
+                </p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3 class="feature-title">Smart Investing</h3>
+                    <p class="feature-description">
+                        AI-powered investment recommendations tailored to your financial goals and risk tolerance.
+                    </p>
+                </div>
+                
+                <div class="feature-card fade-in delay-1">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="feature-title">Automated Trading</h3>
+                    <p class="feature-description">
+                        Execute trades automatically based on your predefined strategies and market conditions.
+                    </p>
+                </div>
+                
+                <div class="feature-card fade-in delay-2">
+                    <div class="feature-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 class="feature-title">Portfolio Growth</h3>
+                    <p class="feature-description">
+                        Optimize your portfolio with data-driven insights and predictive analytics for maximum returns.
+                    </p>
+                </div>
+                
+                <div class="feature-card fade-in delay-3">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="feature-title">Wealth Management</h3>
+                    <p class="feature-description">
+                        Comprehensive wealth management tools to track, grow, and protect your assets effectively.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platform Section -->
+    <section class="platform" id="platform">
+        <div class="container">
+            <div class="platform-grid">
+                <div class="platform-content fade-in">
+                    <h2>
+                        One Platform, <span class="gradient-text">Complete Financial Control</span>
+                    </h2>
+                    <p>
+                        Everything you need to manage your financial life, all in one place. From investment tracking to retirement planning, we've got you covered.
+                    </p>
+                    
+                    <div class="benefit-list">
+                        <div class="benefit-item">
+                            <div class="benefit-check">
+                                <span>✓</span>
+                            </div>
+                            <p class="benefit-text">AI-powered investment recommendations and insights</p>
+                        </div>
+                        
+                        <div class="benefit-item">
+                            <div class="benefit-check">
+                                <span>✓</span>
+                            </div>
+                            <p class="benefit-text">Seamless integration with your financial accounts</p>
+                        </div>
+                        
+                        <div class="benefit-item">
+                            <div class="benefit-check">
+                                <span>✓</span>
+                            </div>
+                            <p class="benefit-text">Real-time portfolio analytics and performance tracking</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="platform-features fade-in delay-1">
+                    <div class="platform-tool">
+                        <div class="tool-icon">
+                            <i class="fas fa-piggy-bank"></i>
+                        </div>
+                        <h3 class="tool-title">Savings Goals</h3>
+                        <p class="tool-description">Track and achieve financial targets</p>
+                    </div>
+                    
+                    <div class="platform-tool">
+                        <div class="tool-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <h3 class="tool-title">Analytics</h3>
+                        <p class="tool-description">Comprehensive financial insights</p>
+                    </div>
+                    
+                    <div class="platform-tool">
+                        <div class="tool-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="tool-title">Risk Management</h3>
+                        <p class="tool-description">Protect your investments</p>
+                    </div>
+                    
+                    <div class="platform-tool">
+                        <div class="tool-icon">
+                            <i class="fas fa-retweet"></i>
+                        </div>
+                        <h3 class="tool-title">Auto-Rebalancing</h3>
+                        <p class="tool-description">Optimize portfolio allocation</p>
+                    </div>
+                    
+                    <div class="platform-tool">
+                        <div class="tool-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3 class="tool-title">AI Advisor</h3>
+                        <p class="tool-description">Personalized recommendations</p>
+                    </div>
+                    
+                    <div class="platform-tool">
+                        <div class="tool-icon">
+                            <i class="fas fa-file-invoice-dollar"></i>
+                        </div>
+                        <h3 class="tool-title">Tax Optimization</h3>
+                        <p class="tool-description">Maximize after-tax returns</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Finance Tools Section -->
+    <section class="finance-tools" id="tools">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">
+                    Advanced <span class="gradient-text">Financial Tools</span>
+                </h2>
+                <p class="section-description">
+                    Powerful tools to help you analyze, plan, and execute your financial strategy with confidence
+                </p>
+            </div>
+            
+            <div class="tools-grid">
+                <div class="tool-card fade-in">
+                    <i class="fas fa-calculator"></i>
+                    <h3>Retirement Planner</h3>
+                    <p>Plan your retirement with precision using our advanced forecasting tools and scenarios.</p>
+                    <a href="#" class="tool-link">
+                        Explore Tool
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="tool-card fade-in delay-1">
+                    <i class="fas fa-chart-pie"></i>
+                    <h3>Portfolio Analyzer</h3>
+                    <p>Deep dive into your portfolio performance, risk exposure, and diversification metrics.</p>
+                    <a href="#" class="tool-link">
+                        Explore Tool
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="tool-card fade-in delay-2">
+                    <i class="fas fa-balance-scale"></i>
+                    <h3>Risk Assessment</h3>
+                    <p>Evaluate your risk tolerance and get personalized recommendations for your investment strategy.</p>
+                    <a href="#" class="tool-link">
+                        Explore Tool
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="tool-card fade-in delay-3">
+                    <i class="fas fa-project-diagram"></i>
+                    <h3>Estate Planner</h3>
+                    <p>Plan for the future with comprehensive estate planning tools and guidance.</p>
+                    <a href="#" class="tool-link">
+                        Explore Tool
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Investment Strategies Section -->
+    <section class="investment-strategies" id="strategies">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">
+                    Proven <span class="gradient-text">Investment Strategies</span>
+                </h2>
+                <p class="section-description">
+                    Choose from a variety of investment approaches designed to meet different financial goals and risk profiles
+                </p>
+            </div>
+            
+            <div class="strategies-grid">
+                <div class="strategy-card fade-in">
+                    <div class="strategy-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3 class="strategy-title">Growth Investing</h3>
+                    <p class="strategy-description">
+                        Focus on companies that exhibit signs of above-average growth through revenues, earnings, or cash flows.
+                    </p>
+                    <ul class="strategy-features">
+                        <li>High growth potential</li>
+                        <li>Technology & innovation focus</li>
+                        <li>Long-term horizon</li>
+                        <li>Higher volatility</li>
+                    </ul>
+                </div>
+                
+                <div class="strategy-card fade-in delay-1">
+                    <div class="strategy-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3 class="strategy-title">Value Investing</h3>
+                    <p class="strategy-description">
+                        Invest in undervalued companies trading for less than their intrinsic values.
+                    </p>
+                    <ul class="strategy-features">
+                        <li>Margin of safety</li>
+                        <li>Fundamental analysis</li>
+                        <li>Contrarian approach</li>
+                        <li>Patient capital</li>
+                    </ul>
+                </div>
+                
+                <div class="strategy-card fade-in delay-2">
+                    <div class="strategy-icon">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <h3 class="strategy-title">Income Investing</h3>
+                    <p class="strategy-description">
+                        Build a portfolio that generates consistent cash flow through dividends and interest payments.
+                    </p>
+                    <ul class="strategy-features">
+                        <li>Regular income stream</li>
+                        <li>Dividend stocks & bonds</li>
+                        <li>Lower volatility</li>
+                        <li>Retirement focus</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">
+                    Simple, <span class="gradient-text">Transparent Pricing</span>
+                </h2>
+                <p class="section-description">
+                    Choose the perfect plan for your financial needs. All plans include a 30-day free trial.
+                </p>
+            </div>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card fade-in">
+                    <div class="pricing-header">
+                        <h3 class="pricing-name">Essential</h3>
+                        <p class="pricing-description">Perfect for beginners</p>
+                    </div>
+                    
+                    <div class="pricing-price">
+                        <span class="price">$19</span>
+                        <span class="price-period">/month</span>
+                    </div>
+                    
+                    <button class="pricing-button secondary-button">Start Free Trial</button>
+                    
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <div class="feature-check">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <span class="feature-text">Basic portfolio tracking</span>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-check">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <span class="feature-text">Investment alerts</span>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-check">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <span class="feature-text">Basic analytics</span>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-check">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <span class="feature-text">Email support</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="pricing-card popular fade-in delay-1">
+                    <div class="popular-badge">
+                        <i class="fas fa-crown"></i>
+                        <span>Most Popular</span>
+                    </div>
+                    
+                    <div class="pricing-header">
+                        <h3 class="pricing-name">Professional</h3>
+                        <p class="pricing-description">For active investors</p>
+                    </div>
+                    
+                    <div class="pricing-price">
+                        <span class="price">$49</span>
+                        <span class="price-period">/month</span>
+                    </div>
+                    
+                    <button class="pricing-button primary-button">Start Free Trial</button>
+                    
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <div class="feature-check">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <span class="feature-text">Advanced portfolio analytics</span>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-check">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <span class="feature-text">AI investment recommendations</span>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-check">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <span class="feature-text">Tax optimization tools</span>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-check">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <span class="feature-text">Priority support</span>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-check">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <span class="feature-text">Retirement planning</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="pricing-card fade-in delay-2">
+                    <div class="pricing-header">
+                        <h3 class="pricing-name">Wealth Management</h3>
+                        <p class="pricing-description">For high-net-worth individuals</p>
+                    </div>
+                    
+                    <div class="pricing-price">
+                        <span class="price">$149</span>
+                        <span class="price-period">/month</span>
+                    </div>
+                    
+                    <button class="pricing-button secondary-button">Start Free Trial</button>
+                    
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <div class="feature-check">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <span class="feature-text">Dedicated financial advisor</span>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-check">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <span class="feature-text">Estate planning</span>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-check">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <span class="feature-text">Custom investment strategies</span>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-check">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <span class="feature-text">Family office services</span>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-check">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <span class="feature-text">24/7 concierge support</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-links">
+                    <div class="footer-logo">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Finova</span>
+                    </div>
+                    <p class="footer-about">
+                        AI-powered financial platform helping individuals and institutions make smarter investment decisions and grow their wealth.
+                    </p>
+                    <div class="footer-contact">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>contact@finova.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+1 (555) 123-4567</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Platform</h3>
+                    <ul>
+                        <li><a href="#">Features</a></li>
+                        <li><a href="#">Investment Tools</a></li>
+                        <li><a href="#">Retirement Planning</a></li>
+                        <li><a href="#">Wealth Management</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Learning Center</a></li>
+                        <li><a href="#">Market Research</a></li>
+                        <li><a href="#">Investment Strategies</a></li>
+                        <li><a href="#">Help Center</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Security</a></li>
+                        <li><a href="#">Compliance</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="copyright">© 2024 Finova. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.toggle('active');
+                
+                // Change icon
+                const icon = mobileMenuBtn.querySelector('i');
+                if (mobileMenu.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+            
+            // Navbar scroll effect
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('nav-scrolled');
+                } else {
+                    navbar.classList.remove('nav-scrolled');
+                }
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        // Close mobile menu if open
+                        if (mobileMenu.classList.contains('active')) {
+                            mobileMenu.classList.remove('active');
+                            const icon = mobileMenuBtn.querySelector('i');
+                            icon.classList.remove('fa-times');
+                            icon.classList.add('fa-bars');
+                        }
+                        
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Scroll animation
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const fadeInOnScroll = function() {
+                fadeElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    
+                    if (elementTop < window.innerHeight - elementVisible) {
+                        element.classList.add('visible');
+                    }
+                });
+            };
+            
+            // Check on load
+            fadeInOnScroll();
+            
+            // Check on scroll
+            window.addEventListener('scroll', fadeInOnScroll);
+        });
+    </script>
+</body>
+</html>

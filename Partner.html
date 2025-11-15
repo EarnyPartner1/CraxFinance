@@ -1,0 +1,2135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Become A Partner - Finova</title>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<!-- Font Awesome for Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+  :root {
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --secondary: #059669;
+    --secondary-dark: #047857;
+    --accent: #7c3aed;
+    --accent-dark: #6d28d9;
+    --warning: #d97706;
+    --warning-dark: #b45309;
+    --light: #f8fafc;
+    --dark: #0f172a;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-400: #9ca3af;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-800: #1f2937;
+    --gray-900: #111827;
+    --white: #ffffff;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.6;
+    color: var(--gray-700);
+    background-color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* Header Styles */
+  header {
+    background-color: var(--white);
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    animation: slideDown 0.8s ease-out;
+  }
+
+  .header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 4rem;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: var(--dark);
+    text-decoration: none;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .logo:hover {
+    transform: scale(1.05);
+  }
+
+  .logo::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, var(--primary), var(--accent));
+    transition: left 0.5s ease;
+  }
+
+  .logo:hover::after {
+    left: 0;
+  }
+
+  .logo i {
+    color: var(--primary);
+    margin-right: 0.5rem;
+    font-size: 1.75rem;
+    transition: transform 0.5s ease;
+  }
+
+  .logo:hover i {
+    transform: rotate(15deg);
+  }
+
+  .nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+  }
+
+  .nav-links a {
+    color: var(--gray-700);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 0.5rem 0;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--primary), var(--accent));
+    transition: width 0.3s ease;
+  }
+
+  .nav-links a:hover {
+    color: var(--primary);
+  }
+
+  .nav-links a:hover::after {
+    width: 100%;
+  }
+
+  .header-button {
+    background-color: var(--primary);
+    color: var(--white);
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.7s ease;
+  }
+
+  .header-button:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+  }
+
+  .header-button:hover::before {
+    left: 100%;
+  }
+
+  /* Hero Section */
+  .hero-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6rem 1rem 4rem;
+    background: linear-gradient(135deg, var(--primary) 0%, #3b82f6 50%, var(--accent) 100%);
+    color: var(--white);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh; 
+  }
+
+  .container {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    width: none !important;
+   }
+
+  .hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" opacity="0.1"><polygon fill="white" points="0,1000 1000,0 1000,1000"/></svg>');
+    background-size: cover;
+    animation: float 20s infinite linear;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    animation: fadeInUp 1s ease-out 0.5s both;
+  }
+
+  .hero-title {
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    animation: textGlow 3s infinite alternate;
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    max-width: 600px;
+    margin: 0 auto;
+    opacity: 0.9;
+    animation: fadeIn 1s ease-out 1s both;
+  }
+
+  .gradient-text {
+    background: linear-gradient(to right, #fbbf24, #f59e0b);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Floating Elements */
+  .floating-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  .floating-element {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    animation: floatAround 15s infinite linear;
+  }
+
+  .floating-element:nth-child(1) {
+    width: 80px;
+    height: 80px;
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+  }
+
+  .floating-element:nth-child(2) {
+    width: 120px;
+    height: 120px;
+    top: 60%;
+    left: 80%;
+    animation-delay: -5s;
+  }
+
+  .floating-element:nth-child(3) {
+    width: 60px;
+    height: 60px;
+    top: 80%;
+    left: 20%;
+    animation-delay: -10s;
+  }
+
+  /* Main Container */
+  .main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .split-layout {
+    display: flex;
+    width: 100%;
+    margin: 4rem 0;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow-xl);
+    animation: fadeInUp 1s ease-out 1.2s both;
+  }
+
+  .image-side {
+    flex: 1;
+    background: url('https://i.ibb.co/MD53K5xR/partner-removebg-preview.png') center/contain no-repeat;
+    display: flex;
+    height: auto;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px;
+    background-color: var(--gray-50);
+    transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .image-side::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(124, 58, 237, 0.05));
+    z-index: 0;
+  }
+
+  .image-side:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  }
+
+  .form-side {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    background-color: var(--white);
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 450px;
+    background: var(--white);
+    border-radius: 16px;
+    box-shadow: var(--shadow-lg);
+    padding: 30px;
+    transition: transform 0.3s ease;
+  }
+
+  .container:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
+  }
+  
+  .progress-bar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    position: relative;
+  }
+
+  .progress-bar::before {
+    content: '';
+    position: absolute;
+    top: 25px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: var(--gray-200);
+    z-index: 1;
+    border-radius: 2px;
+  }
+
+  .progress-bar::after {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 0;
+    width: 0%;
+    height: 4px;
+    background: linear-gradient(to right, var(--primary), var(--accent));
+    z-index: 2;
+    border-radius: 2px;
+    transition: width 0.5s ease;
+  }
+
+  .progress-step {
+    flex: 1;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gray-400);
+    position: relative;
+    z-index: 3;
+    transition: all 0.3s ease;
+    padding: 30px;
+  }
+
+  .progress-step::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 20px;
+    background-color: var(--white);
+    border: 3px solid var(--gray-300);
+    border-radius: 50%;
+    z-index: 4;
+    transition: all 0.3s ease;
+  }
+
+  .progress-step.active {
+    color: var(--primary);
+  }
+
+  .progress-step.active::before {
+    border-color: var(--primary);
+    background-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.2);
+  }
+
+  .progress-step.completed::before {
+    content: '✓';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-size: 12px;
+    border-color: var(--secondary);
+    background-color: var(--secondary);
+  }
+
+  .form-step {
+    display: none;
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  .form-step.active {
+    display: block;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  label {
+    font-weight: 400;
+    font-size: 13px;
+    color: var(--gray-700);
+    margin-bottom: 1px;
+    display: block;
+    transition: all 0.3s ease;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="number"],
+  select,
+  textarea,
+  input[type="file"],
+  input[type="date"] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--gray-200);
+    box-sizing: border-box;
+    font-size: 14px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    background-color: var(--white);
+  }
+
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  input[type="tel"]:focus,
+  input[type="number"]:focus,
+  select:focus,
+  textarea:focus,
+  input[type="file"]:focus,
+  input[type="date"]:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.1);
+    transform: translateY(-2px);
+  }
+
+  .gender-select {
+    height: 50px;
+    width: 100%;
+    border-radius: 10px;
+    justify-content: space-between;
+    border: 1px solid var(--gray-200);
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    transition: all 0.3s ease;
+  }
+
+  .gender-select:focus-within {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  }
+
+  .gender-select label {
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+
+  .gender-select input[type="radio"] {
+    /* margin-right: 5px; */
+    transform: scale(1.2);
+  }
+
+  .gender-select .fa {
+    margin-right: 5px;
+    color: var(--gray-500);
+  }
+
+  .gender-select label:hover {
+    color: var(--primary);
+  }
+
+  .gender-select label:hover .fa {
+    color: var(--primary);
+  }
+
+  button {
+    padding: 14px 25px;
+    background: linear-gradient(to right, var(--primary), var(--accent));
+    color: var(--white);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 400;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+
+  button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: left 0.7s ease;
+  }
+
+  button:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  button:hover::before {
+    left: 100%;
+  }
+
+  button:disabled {
+    background: var(--gray-400);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  button:disabled:hover::before {
+    display: none;
+  }
+
+  h4 {
+    text-align: center;
+    color: var(--white);
+    background: linear-gradient(to right, var(--primary), var(--accent));
+    padding: 20px;
+    border-radius: 12px;
+    font-size: 24px;
+    margin-bottom: 25px;
+    box-shadow: var(--shadow);
+    animation: pulse 2s infinite;
+  }
+
+  .mandatory::after {
+    content: '*';
+    color: #FF0000;
+  }
+
+  .loading-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(to right, var(--primary), var(--accent));
+    color: var(--white);
+    padding: 20px 30px;
+    border-radius: 50px;
+    font-size: 16px;
+    display: none;
+    z-index: 100;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .thank-you-message {
+    display: none;
+    text-align: center;
+    color: var(--primary);
+    font-size: 22px;
+    margin-top: 20px;
+    padding: 30px;
+    background-color: var(--gray-50);
+    border-radius: 12px;
+    border-left: 4px solid var(--secondary);
+    animation: fadeIn 1s ease-out;
+  }
+
+  .content {
+    font-size: 16px;
+  }
+
+  .payment-options {
+    margin-bottom: 20px;
+  }
+
+  .payment-option {
+    margin-bottom: 15px;
+    padding: 20px;
+    border: 2px solid var(--gray-200);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .payment-option:hover {
+    border-color: var(--primary);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+  }
+
+  .payment-option.selected {
+    border-color: var(--primary);
+    background-color: rgba(37, 99, 235, 0.05);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+  }
+
+  .payment-option input[type="radio"] {
+    margin-right: 10px;
+    transform: scale(1.2);
+  }
+
+  .gst-note {
+    font-size: 12px;
+    color: var(--gray-600);
+    margin-top: 5px;
+  }
+
+  .manual-payment-input {
+    display: none;
+    margin-top: 15px;
+    padding: 15px;
+    background-color: var(--gray-50);
+    border-radius: 8px;
+    animation: fadeIn 0.5s ease-out;
+  }
+  
+  /* Plans Table Styles */
+  .plans-section {
+    margin: 60px 0;
+    padding: 40px;
+    background-color: var(--white);
+    border-radius: 16px;
+    box-shadow: var(--shadow-lg);
+    animation: fadeInUp 1s ease-out 1.4s both;
+  }
+
+  .plans-section h1 {
+    text-align: center;
+    color: var(--primary);
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+  }
+
+  .plans-section p.center-text {
+    text-align: center;
+    font-size: 1.2em;
+    color: var(--gray-600);
+    margin-bottom: 30px;
+  }
+
+  .plans-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+
+  .plans-table th, .plans-table td {
+    border: 1px solid var(--gray-200);
+    padding: 15px;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .plans-table th {
+    background: linear-gradient(to right, var(--primary), var(--accent));
+    color: var(--white);
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .plans-table th::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.7s ease;
+  }
+
+  .plans-table th:hover::before {
+    left: 100%;
+  }
+
+  .highlight {
+    background-color: var(--warning);
+    font-weight: bold;
+    color: var(--white);
+    padding: 8px 12px;
+    border-radius: 8px;
+    display: inline-block;
+    margin: 5px 0;
+    box-shadow: var(--shadow);
+  }
+
+  .apply-button {
+    display: block;
+    width: 200px;
+    margin: 30px auto;
+    padding: 15px 25px;
+    text-align: center;
+    background: linear-gradient(to right, var(--primary), var(--accent));
+    color: var(--white);
+    text-decoration: none;
+    font-size: 1.2em;
+    border-radius: 10px;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: var(--shadow);
+  }
+
+  .apply-button:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* New Benefits Section */
+  .benefits-section {
+    margin: 60px 0;
+    padding: 50px;
+    background-color: var(--white);
+    border-radius: 16px;
+    box-shadow: var(--shadow-lg);
+    animation: fadeInUp 1s ease-out 1.6s both;
+  }
+
+  .benefits-section h2 {
+    text-align: center;
+    color: var(--primary);
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+  }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+  }
+
+  .benefit-card {
+    background-color: var(--white);
+    border-radius: 12px;
+    padding: 25px;
+    border-left: 4px solid var(--primary);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .benefit-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.05), transparent);
+    transition: left 0.7s ease;
+  }
+
+  .benefit-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-xl);
+    border-left: 4px solid var(--warning);
+  }
+
+  .benefit-card:hover::before {
+    left: 100%;
+  }
+
+  .benefit-card h3 {
+    color: var(--primary);
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    font-size: 1.3rem;
+  }
+
+  .benefit-card h3 i {
+    margin-right: 12px;
+    color: var(--warning);
+    font-size: 1.5rem;
+  }
+
+  .benefit-card p {
+    color: var(--gray-600);
+    line-height: 1.6;
+  }
+
+  /* Footer */
+  footer {
+    background-color: var(--dark);
+    color: var(--white);
+    padding-top: 4rem;
+    padding-bottom: 2rem;
+    margin-top: 60px;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-bottom: 3rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 1rem;
+  }
+
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    transition: transform 0.5s ease;
+  }
+
+  .footer-logo:hover {
+    transform: scale(1.05);
+  }
+
+  .footer-logo i {
+    color: var(--primary);
+    margin-right: 0.5rem;
+    font-size: 1.5rem;
+  }
+
+  .footer-logo span {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  .footer-about {
+    color: var(--gray-400);
+    margin-bottom: 1rem;
+    max-width: 20rem;
+  }
+
+  .footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--gray-400);
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: transform 0.3s ease;
+  }
+
+  .contact-item:hover {
+    transform: translateX(5px);
+  }
+
+  .contact-item i {
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+  }
+
+  .contact-item:hover i {
+    transform: scale(1.2);
+  }
+
+  .footer-links h3 {
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: var(--white);
+  }
+
+  .footer-links ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .footer-links a {
+    color: var(--gray-400);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    padding-left: 0;
+  }
+
+  .footer-links a::before {
+    content: '›';
+    position: absolute;
+    left: -15px;
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+
+  .footer-links a:hover {
+    color: var(--white);
+    padding-left: 15px;
+  }
+
+  .footer-links a:hover::before {
+    opacity: 1;
+    left: 0;
+  }
+
+  .footer-bottom {
+    border-top: 1px solid var(--gray-800);
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .copyright {
+    color: var(--gray-400);
+    font-size: 0.875rem;
+  }
+
+  .social-links {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .social-links a {
+    color: var(--gray-400);
+    text-decoration: none;
+    transition: all 0.5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--gray-800);
+  }
+
+  .social-links a:hover {
+    color: var(--white);
+    transform: translateY(-5px) rotate(10deg);
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+  }
+
+  /* Animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes float {
+    0% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-20px) rotate(180deg);
+    }
+    100% {
+      transform: translateY(0) rotate(360deg);
+    }
+  }
+
+  @keyframes floatAround {
+    0% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+      transform: translate(100px, 50px) rotate(90deg);
+    }
+    50% {
+      transform: translate(50px, 100px) rotate(180deg);
+    }
+    75% {
+      transform: translate(-50px, 50px) rotate(270deg);
+    }
+    100% {
+      transform: translate(0, 0) rotate(360deg);
+    }
+  }
+
+  @keyframes textGlow {
+    0% {
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+    100% {
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.6);
+    }
+  }
+
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .contact-container {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    
+    .footer-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .split-layout {
+      flex-direction: column;
+    }
+
+    .image-side {
+      height: 300px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none;
+    }
+    
+    .hero-title {
+      font-size: 2.5rem;
+    }
+    
+    .footer-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .footer-bottom {
+      flex-direction: column;
+      gap: 1rem;
+      text-align: center;
+    }
+
+    .plans-table {
+      display: block;
+      overflow-x: auto;
+    }
+
+    .benefits-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .benefits-section {
+      padding: 30px;
+    }
+
+    .benefits-section h2 {
+      font-size: 2rem;
+    }
+
+    .plans-section {
+      padding: 30px;
+    }
+
+    .plans-section h1 {
+      font-size: 2rem;
+    }
+
+    .split-layout {
+      margin: 2rem 0;
+    }
+
+    .form-side, .image-side {
+      padding: 20px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hero-section {
+      padding: 5rem 1rem 3rem;
+    }
+    
+    .hero-title {
+      font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+      font-size: 1rem;
+    }
+    
+    .container {
+      padding: 20px;
+    }
+
+    h4 {
+      font-size: 20px;
+      padding: 15px;
+    }
+
+    .benefits-section, .plans-section {
+      padding: 20px;
+    }
+  }
+</style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="logo">
+        <i class="fas fa-chart-line"></i>
+        <span>Finova</span>
+      </a>
+      
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="features.html">Features</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      
+      <button class="header-button">Get Started</button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="floating-elements">
+      <div class="floating-element"></div>
+      <div class="floating-element"></div>
+      <div class="floating-element"></div>
+    </div>
+    <div class="container" style="background-color: transparent;">
+      <div class="hero-content">
+        <h1 class="hero-title">Become A <span class="gradient-text">Finova Partner</span></h1>
+        <p class="hero-subtitle">Join India's fastest growing financial platform and unlock unlimited earning potential with our comprehensive partner program</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <div class="main-container">
+    <!-- Form Section -->
+    <div class="split-layout">
+      
+      <!-- Form Side (on right) -->
+      <div class="form-side">
+        <div class="container">
+          <h4>Become A Partner</h4>
+          <div class="progress-bar">
+            <div class="progress-step active">Step:1</div>
+            <div class="progress-step">Step:2</div>
+            <div class="progress-step">Step:3</div>
+            <div class="progress-step">Step:4</div>
+          </div>
+          <div class="loading-message" id="loadingMessage" style="display: none;">Loading...</div>
+          <div class="thank-you-message" id="thankYouMessage">Thank you for your submission!</div>
+          <form id="paymentForm" class="content">
+            <!-- All form steps remain exactly the same -->
+            <div class="form-step active" id="step1">
+              <div class="form-group">
+                <div class="gender-select">
+                  <label for="male" class="mandatory">
+                    <i class="fas fa-user"></i> Male
+                  </label>
+                  <input type="radio" id="male" name="gender" value="male" required>
+                  <label for="female" class="mandatory">
+                    <i class="fas fa-user"></i> Female
+                  </label>
+                  <input type="radio" id="female" name="gender" value="female" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="fullname" class="mandatory">Full Name:</label>
+                <input type="text" id="fullname" name="fullname" required>
+              </div>
+              <div class="form-group">
+                <label for="phone" class="mandatory">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required>
+              </div>
+              <div class="form-group">
+                <label for="email" class="mandatory">Email:</label>
+                <input type="email" id="email" name="email" required>
+              </div>
+              <div class="form-group">
+                <label for="city" class="mandatory">City Name:</label>
+                <input type="text" id="city" name="city" required>
+              </div>
+              <div class="form-group" style="display: flex; justify-content: space-between;">
+                <button type="button" onclick="prevStep(1)" disabled>Back</button>
+                <button type="button" onclick="validateStep(1)">Next</button>
+              </div>
+            </div>
+            <div class="form-step" id="step2">
+              <div class="form-group">
+                <label for="dob" class="mandatory">Date of Birth:</label> <br>
+                <input type="date" id="dob" name="dob" required>
+              </div>
+              <div class="form-group">
+                <label for="dsa_type" class="mandatory">DSA Type:</label>
+                <select id="dsa_type" name="dsa_type" required>
+                  <option value="">Select DSA Type</option>
+                  <option value="individual">Individual Partner - ₹25,999 +GST</option>
+                  <option value="franchise">Franchise Partner - ₹49,999 +GST</option>
+                  <option value="whitelabel">Whitelabel Partner - ₹4,99,999 +GST</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="profession" class="mandatory">Profession Type:</label>
+                <select id="profession" name="profession" required>
+                  <option value="">Select Profession</option>
+                  <option value="salaried">Salaried</option>
+                  <option value="self_employed">Self Employed</option>
+                  <option value="student">Student</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="monthly_salary" class="mandatory">Monthly Income:</label>
+                <select id="monthly_salary" name="monthly_income" required>
+                  <option value="">Select Monthly Income</option>
+                  <option value="10k_to_15k">10k to 15k</option>
+                  <option value="15k_to_25k">15k to 25k</option>
+                  <option value="25k_to_40k">25k to 40k</option>
+                  <option value="40k_to_above">40k to Above</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="experience" class="mandatory">Any Experience:</label>
+                <select id="experience" name="experience" required>
+                  <option value="">Select Experience</option>
+                  <option value="existing_dsa">Existing DSA</option>
+                  <option value="insurance_agent">Insurance Agent</option>
+                  <option value="working_professional">Working Professional</option>
+                </select>
+              </div>
+              <div class="form-group" style="display: flex; justify-content: space-between;">
+                <button type="button" onclick="prevStep(2)">Back</button>
+                <button type="button" id="step2SubmitBtn">Submit</button>
+              </div>
+            </div>
+            <div class="form-step" id="step3">
+              <div style="text-align: center; font-weight: bold; font-size: 28px; color: #4e25c9; display: flex; justify-content: center; align-items: center;">
+                <i class="fas fa-check-circle" style="color: #4e25c9; margin-right: 8px;"></i>
+                Congratulations!
+              </div>
+              <p style="text-align: center; font-size: 20px; color: #4e25c9;">
+                You're eligible for our Partner Program! Unlock earnings of upto ₹1-Lakh to ₹5-Lakhs monthly.
+                We're excited to onboard you as a partner.
+              </p>
+              <ul style="list-style: none; padding-left: 0;">
+                <li style="display: flex; align-items: center; margin-bottom: 5px;">
+                  <i class="fas fa-check-circle" style="color: #4e25c9; margin-right: 8px;"></i> Instant Access to 80+ Banks & Lenders.
+                </li>
+                <li style="display: flex; align-items: center; margin-bottom: 5px;">
+                  <i class="fas fa-check-circle" style="color: #4e25c9; margin-right: 8px;"></i> High Commission & Transparent Payouts.
+                </li>
+                <li style="display: flex; align-items: center; margin-bottom: 5px;">
+                  <i class="fas fa-check-circle" style="color: #4e25c9; margin-right: 8px;"></i> Tech-Enabled Lead Management System.
+                </li>
+                <li style="display: flex; align-items: center; margin-bottom: 5px;">
+                  <i class="fas fa-check-circle" style="color: #4e25c9; margin-right: 8px;"></i> Dedicated Training & Support.
+                </li>
+              </ul>
+              
+              <div class="payment-options">
+                <h3>Payment Options</h3>
+                <div class="payment-option selected" onclick="selectPaymentOption('dsa')">
+                  <input type="radio" id="payment_dsa" name="payment_option" value="dsa" checked>
+                  <label for="payment_dsa">Pay as per selected DSA Type</label>
+                  <div id="dsa_payment_details">
+                    <p>Selected Plan: <span id="selected_plan">Individual Partner</span></p>
+                    <p>Base Amount: ₹<span id="base_amount">25,999</span></p>
+                    <p>GST (18%): ₹<span id="gst_amount">4,680</span></p>
+                    <p>Total Amount: ₹<span id="total_amount">30,679</span></p>
+                  </div>
+                </div>
+                
+                <div class="payment-option" onclick="selectPaymentOption('manual')">
+                  <input type="radio" id="payment_manual" name="payment_option" value="manual">
+                  <label for="payment_manual">Enter custom payment amount</label>
+                  <div class="manual-payment-input" id="manual_payment_input">
+                    <label for="manual_amount">Enter Base Amount (₹):</label>
+                    <input type="number" id="manual_amount" name="manual_amount" min="100" placeholder="Enter base amount" oninput="calculateManualPayment()">
+                    <p>GST (18%): ₹<span id="manual_gst">0</span></p>
+                    <p>Total Amount: ₹<span id="manual_total">0</span></p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="form-group" style="display: flex; justify-content: space-between;">
+                <button type="button" onclick="prevStep(3)">Back</button>
+                <button type="button" id="payButton">Proceed to Payment</button>
+              </div>
+            </div>
+            <div class="form-step" id="step4">
+              <div class="form-group">
+                <label for="account_holder_name" class="mandatory">Account Holder Name:</label>
+                <input type="text" id="account_holder_name" name="account_holder_name" required>
+              </div>
+              <div class="form-group">
+                <label for="account_number" class="mandatory">Account Number:</label>
+                <input type="text" id="account_number" name="account_number" required>
+              </div>
+              <div class="form-group">
+                <label for="ifsc_code" class="mandatory">IFSC Code:</label>
+                <input type="text" id="ifsc_code" name="ifsc_code" required>
+              </div>
+              <div class="form-group">
+                <label for="kyc_pan" class="mandatory">Upload PAN Card:</label>
+                <input type="file" id="kyc_pan" name="kyc_pan" required>
+              </div>
+              <div class="form-group">
+                <label for="kyc_aadhar" class="mandatory">Upload Aadhar Card:</label>
+                <input type="file" id="kyc_aadhar" name="kyc_aadhar" required>
+              </div>
+              <div class="form-group">
+                <label for="kyc_cheque" class="mandatory">Upload Cancel Cheque:</label>
+                <input type="file" id="kyc_cheque" name="kyc_cheque" required>
+              </div>
+              <div class="form-group">
+                <label for="kyc_education" class="mandatory">Upload Educational Certificate:</label>
+                <input type="file" id="kyc_education" name="kyc_education" required>
+              </div>
+              <div class="form-group" style="display: flex; justify-content: space-between;">
+                <button type="button" onclick="prevStep(4)">Back</button>
+                <button type="button" id="finalSubmitBtn">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        
+      </div>
+      <!-- Image Side (on left) -->
+      <div class="image-side">
+        <!-- Image will be displayed as background -->
+      </div>
+      
+    </div>
+
+    <!-- New Benefits Section -->
+    <div class="benefits-section">
+      <h2>Why DSA Partners Should Choose Finova</h2>
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <h3><i class="fas fa-boxes"></i> Diverse Product Range</h3>
+          <p>Access to 400+ financial products, ensuring a solution for every customer need.</p>
+        </div>
+        <div class="benefit-card">
+          <h3><i class="fas fa-university"></i> Extensive Bank Network</h3>
+          <p>Partner with over 80+ banks and NBFCs, offering a wide variety of loan options.</p>
+        </div>
+        <div class="benefit-card">
+          <h3><i class="fas fa-search-dollar"></i> Flexible Inquiry Options</h3>
+          <p>Provide multiple inquiry opportunities, making it easier to match clients with the right lender.</p>
+        </div>
+        <div class="benefit-card">
+          <h3><i class="fas fa-credit-card"></i> Low CIBIL Score Solutions</h3>
+          <p>Exclusive offerings for customers with low or poor CIBIL scores, opening doors where others say no.</p>
+        </div>
+        <div class="benefit-card">
+          <h3><i class="fas fa-handshake"></i> Private Lender Access</h3>
+          <p>Seamlessly connect with private lenders for specialized and non-traditional financing needs.</p>
+        </div>
+        <div class="benefit-card">
+          <h3><i class="fas fa-users"></i> Peer-to-Peer Lending</h3>
+          <p>Leverage P2P lending platforms, giving customers access to alternative financing options.</p>
+        </div>
+        <div class="benefit-card">
+          <h3><i class="fas fa-user-shield"></i> Support for Defaulters</h3>
+          <p>Tailored solutions for defaulter customers, helping them rebuild credit and access funds.</p>
+        </div>
+        <div class="benefit-card">
+          <h3><i class="fas fa-sliders-h"></i> Customizable Loan Terms</h3>
+          <p>Flexible repayment structures that can be adjusted to suit your customer's financial comfort.</p>
+        </div>
+        <div class="benefit-card">
+          <h3><i class="fas fa-percentage"></i> Competitive Rates</h3>
+          <p>Offer highly competitive interest rates across multiple loan categories.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Plans Section -->
+    <div class="plans-section">
+      <h1>Choose Our Partnership Plan</h1>
+
+      <table class="plans-table">
+        <thead>
+          <tr>
+            <th>Features</th>
+            <th>
+              DSA Individual<br><small>Individual</small><br>
+              <span class="highlight">&#8377;25,999 +GST</span> 
+            </th>
+            <th>
+              DSA Franchise<br> <small>Up to 20 Users</small><br>
+              <span class="highlight">&#8377;49,999 +GST</span> 
+            </th>
+            <th>
+              DSA Own Brand<br> <small>White Label, Unlimited Users</small><br>
+              <span class="highlight">&#8377;4,99,999 +GST</span> 
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Own Website</td>
+            <td><i class="fas fa-times-circle" style="color: #d9534f;"></i></td>
+            <td><i class="fas fa-times-circle" style="color: #d9534f;"></i></td>
+            <td><i class="fas fa-check-circle" style="color: #5cb85c;"></i></td>
+          </tr>
+          <tr>
+            <td>Own Mobile App</td>
+            <td><i class="fas fa-times-circle" style="color: #d9534f;"></i></td>
+            <td><i class="fas fa-times-circle" style="color: #d9534f;"></i></td>
+            <td><i class="fas fa-check-circle" style="color: #5cb85c;"></i></td>
+          </tr>
+          <tr>
+            <td>Own CRM System</td>
+            <td><i class="fas fa-times-circle" style="color: #d9534f;"></i></td>
+            <td><i class="fas fa-times-circle" style="color: #d9534f;"></i></td>
+            <td><i class="fas fa-check-circle" style="color: #5cb85c;"></i></td>
+          </tr>
+          <tr>
+            <td>Gov. Bond</td>
+            <td><i class="fas fa-times-circle" style="color: #d9534f;"></i></td>
+            <td><i class="fas fa-times-circle" style="color: #d9534f;"></i></td>
+            <td><i class="fas fa-check-circle" style="color: #5cb85c;"></i></td>
+          </tr>
+          <tr>
+            <td>Gov Scheme Loans</td>
+            <td><i class="fas fa-times-circle" style="color: #d9534f;"></i></td>
+            <td><i class="fas fa-times-circle" style="color: #d9534f;"></i></td>
+            <td><i class="fas fa-check-circle" style="color: #5cb85c;"></i></td>
+          </tr>
+          <tr>
+            <td>MSME's Loans</td>
+            <td><i class="fas fa-times-circle" style="color: #d9534f;"></i></td>
+            <td><i class="fas fa-times-circle" style="color: #d9534f;"></i></td>
+            <td><i class="fas fa-check-circle" style="color: #5cb85c;"></i></td>
+          </tr>
+          <tr>
+            <td>Weekly Training</td>
+            <td><i class="fas fa-times-circle" style="color: #d9534f;"></i></td>
+            <td><i class="fas fa-check-circle" style="color: #5cb85c;"></i></td>
+            <td><i class="fas fa-check-circle" style="color: #5cb85c;"></i></td>
+          </tr>
+          <tr>
+            <td>Website Login</td>
+            <td><i class="fas fa-check-circle" style="color: #5cb85c;"></i></td>
+            <td><i class="fas fa-check-circle" style="color: #5cb85c;"></i></td>
+            <td><i class="fas fa-check-circle" style="color: #5cb85c;"></i></td>
+          </tr>
+          <tr>
+            <td>RM Support</td>
+            <td><i class="fas fa-check-circle" style="color: #5cb85c;"></i></td>
+            <td><i class="fas fa-check-circle" style="color: #5cb85c;"></i></td>
+            <td><i class="fas fa-check-circle" style="color: #5cb85c;"></i></td>
+          </tr>
+          <tr>
+            <td>Work Pan India</td>
+            <td><i class="fas fa-check-circle" style="color: #5cb85c;"></i></td>
+            <td><i class="fas fa-check-circle" style="color: #5cb85c;"></i></td>
+            <td><i class="fas fa-check-circle" style="color: #5cb85c;"></i></td>
+          </tr>
+          
+          <tr>
+            <td>Loans</td>
+            <td><i class="fas fa-check-circle" style="color: #5cb85c;"></i></td>
+            <td><i class="fas fa-check-circle" style="color: #5cb85c;"></i></td>
+            <td><i class="fas fa-check-circle" style="color: #5cb85c;"></i></td>
+          </tr>
+          <tr>
+            <td>Insurance</td>
+            <td><i class="fas fa-check-circle" style="color: #5cb85c;"></i></td>
+            <td><i class="fas fa-check-circle" style="color: #5cb85c;"></i></td>
+            <td><i class="fas fa-check-circle" style="color: #5cb85c;"></i></td>
+          </tr>
+          <tr>
+            <td>Credit Card</td>
+            <td><i class="fas fa-check-circle" style="color: #5cb85c;"></i></td>
+            <td><i class="fas fa-check-circle" style="color: #5cb85c;"></i></td>
+            <td><i class="fas fa-check-circle" style="color: #5cb85c;"></i></td>
+          </tr>
+          <tr>
+            <td>Bank's Accounts</td>
+            <td><i class="fas fa-check-circle" style="color: #5cb85c;"></i></td>
+            <td><i class="fas fa-check-circle" style="color: #5cb85c;"></i></td>
+            <td><i class="fas fa-check-circle" style="color: #5cb85c;"></i></td>
+          </tr>
+          <tr>
+            <td>Mutual Fund</td>
+            <td><i class="fas fa-check-circle" style="color: #5cb85c;"></i></td>
+            <td><i class="fas fa-check-circle" style="color: #5cb85c;"></i></td>
+            <td><i class="fas fa-check-circle" style="color: #5cb85c;"></i></td>
+          </tr>
+          <tr>
+            <td>P2P Funding</td>
+            <td><i class="fas fa-check-circle" style="color: #5cb85c;"></i></td>
+            <td><i class="fas fa-check-circle" style="color: #5cb85c;"></i></td>
+            <td><i class="fas fa-check-circle" style="color: #5cb85c;"></i></td>
+          </tr>
+          <tr>
+            <td>Private Funding</td>
+            <td><i class="fas fa-check-circle" style="color: #5cb85c;"></i></td>
+            <td><i class="fas fa-check-circle" style="color: #5cb85c;"></i></td>
+            <td><i class="fas fa-check-circle" style="color: #5cb85c;"></i></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-links">
+        <div class="footer-logo">
+          <i class="fas fa-chart-line"></i>
+          <span>Finova</span>
+        </div>
+        <p class="footer-about">
+          AI-powered financial platform helping individuals and institutions make smarter investment decisions and grow their wealth.
+        </p>
+        <div class="footer-contact">
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <span>contact@finova.com</span>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <span>+1 (555) 123-4567</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-links">
+        <h3>Platform</h3>
+        <ul>
+          <li><a href="#">Features</a></li>
+          <li><a href="#">Investment Tools</a></li>
+          <li><a href="#">Retirement Planning</a></li>
+          <li><a href="#">Wealth Management</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-links">
+        <h3>Company</h3>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Press</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-links">
+        <h3>Resources</h3>
+        <ul>
+          <li><a href="#">Learning Center</a></li>
+          <li><a href="#">Market Research</a></li>
+          <li><a href="#">Investment Strategies</a></li>
+          <li><a href="#">Help Center</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p class="copyright">© 2024 Finova. All rights reserved.</p>
+      <div class="social-links">
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </footer>
+
+<script>
+// Global variables to store form data and payment details
+let formData = {};
+let paymentDetails = {};
+let salesmaxResponse = null;
+
+function nextStep(step) {
+    document.getElementById('step' + step).classList.remove('active');
+    document.getElementById('step' + (step + 1)).classList.add('active');
+    document.querySelectorAll('.progress-step')[step - 1].classList.remove('active');
+    document.querySelectorAll('.progress-step')[step].classList.add('active');
+
+    if (step > 1) {
+        document.querySelector('button[onclick="prevStep(1)"]').disabled = false;
+    }
+    
+    // Update payment details when moving to step 3
+    if (step === 2) {
+        updatePaymentDetails();
+    }
+}
+
+function prevStep(step) {
+    document.getElementById('step' + step).classList.remove('active');
+    document.getElementById('step' + (step - 1)).classList.add('active');
+    document.querySelectorAll('.progress-step')[step - 1].classList.remove('active');
+    document.querySelectorAll('.progress-step')[step - 2].classList.add('active');
+
+    if (step === 2) {
+        document.querySelector('button[onclick="prevStep(1)"]').disabled = true;
+    }
+}
+
+function validateStep(step) {
+    var inputs = document.querySelectorAll('#step' + step + ' input[required], #step' + step + ' select[required]');
+    var isValid = true;
+
+    inputs.forEach(function(input) {
+        if (!input.value.trim()) {
+            isValid = false;
+            input.style.borderColor = 'red';
+        } else {
+            input.style.borderColor = '#ccc';
+        }
+    });
+
+    // Special validation for radio buttons in step 1
+    if (step === 1) {
+        var genderSelected = document.querySelector('input[name="gender"]:checked');
+        if (!genderSelected) {
+            isValid = false;
+            document.querySelector('.gender-select').style.border = '1px solid red';
+            document.querySelector('.gender-select').style.padding = '5px';
+            document.querySelector('.gender-select').style.borderRadius = '5px';
+        } else {
+            document.querySelector('.gender-select').style.border = 'none';
+            document.querySelector('.gender-select').style.padding = '0';
+        }
+    }
+
+    if (isValid) {
+        nextStep(step);
+    } else {
+        alert('Please fill all required fields');
+    }
+}
+
+function collectFormData() {
+    // Collect all form data
+    formData = {
+        gender: document.querySelector('input[name="gender"]:checked')?.value,
+        fullname: document.getElementById('fullname').value,
+        phone: document.getElementById('phone').value,
+        email: document.getElementById('email').value,
+        city: document.getElementById('city').value,
+        dob: document.getElementById('dob').value,
+        dsa_type: document.getElementById('dsa_type').value,
+        profession: document.getElementById('profession').value,
+        monthly_income: document.getElementById('monthly_salary').value,
+        experience: document.getElementById('experience').value,
+        account_holder_name: document.getElementById('account_holder_name').value,
+        account_number: document.getElementById('account_number').value,
+        ifsc_code: document.getElementById('ifsc_code').value
+    };
+}
+
+function updatePaymentDetails() {
+    var dsaType = document.getElementById('dsa_type').value;
+    var planName = '';
+    var baseAmount = 0;
+    
+    switch(dsaType) {
+        case 'individual':
+            planName = 'Individual Partner';
+            baseAmount = 25999;
+            break;
+        case 'franchise':
+            planName = 'Franchise Partner';
+            baseAmount = 49999;
+            break;
+        case 'whitelabel':
+            planName = 'Whitelabel Partner';
+            baseAmount = 499999;
+            break;
+        default:
+            planName = 'Individual Partner';
+            baseAmount = 25999;
+    }
+    
+    // Calculate GST (18%)
+    var gstAmount = Math.round(baseAmount * 0.18);
+    var totalAmount = baseAmount + gstAmount;
+    
+    // Update the display
+    document.getElementById('selected_plan').textContent = planName;
+    document.getElementById('base_amount').textContent = baseAmount.toLocaleString('en-IN');
+    document.getElementById('gst_amount').textContent = gstAmount.toLocaleString('en-IN');
+    document.getElementById('total_amount').textContent = totalAmount.toLocaleString('en-IN');
+    
+    // Store payment details
+    paymentDetails = {
+        planName: planName,
+        baseAmount: baseAmount,
+        gstAmount: gstAmount,
+        totalAmount: totalAmount
+    };
+}
+
+function calculateManualPayment() {
+    var manualAmount = parseFloat(document.getElementById('manual_amount').value) || 0;
+    var gstAmount = Math.round(manualAmount * 0.18);
+    var totalAmount = manualAmount + gstAmount;
+    
+    document.getElementById('manual_gst').textContent = gstAmount.toLocaleString('en-IN');
+    document.getElementById('manual_total').textContent = totalAmount.toLocaleString('en-IN');
+    
+    // Update payment details for manual payment
+    paymentDetails = {
+        planName: 'Custom Amount',
+        baseAmount: manualAmount,
+        gstAmount: gstAmount,
+        totalAmount: totalAmount
+    };
+}
+
+function selectPaymentOption(option) {
+    document.getElementById('payment_dsa').checked = (option === 'dsa');
+    document.getElementById('payment_manual').checked = (option === 'manual');
+    
+    document.querySelectorAll('.payment-option').forEach(el => {
+        el.classList.remove('selected');
+    });
+    
+    if (option === 'dsa') {
+        document.querySelector('#payment_dsa').parentNode.classList.add('selected');
+        document.getElementById('manual_payment_input').style.display = 'none';
+        updatePaymentDetails(); // Reset to DSA type payment details
+    } else {
+        document.querySelector('#payment_manual').parentNode.classList.add('selected');
+        document.getElementById('manual_payment_input').style.display = 'block';
+    }
+}
+
+// Updated Salesmax API submission function with multiple fallbacks
+async function submitToSalesmax(submissionType) {
+    const salesmaxToken = 'ga8Sjs4YrV71-9SodTT6Gw';
+    const apiUrl = `https://integration.pqa.salesmax.ai/salesmax/leads?token=${salesmaxToken}`;
+    const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+    
+    let salesmaxData = {
+        first_name: formData.fullname ? formData.fullname.split(' ')[0] : '',
+        last_name: formData.fullname ? formData.fullname.split(' ').slice(1).join(' ') : '',
+        mobile: formData.phone || '',
+        email: formData.email || '',
+        city: formData.city || '',
+        product: 'DSA Partner Program',
+        monthly_income: formData.monthly_income || '',
+        profession: formData.profession || '',
+        dob: formData.dob || '',
+        gender: formData.gender || '',
+        source: 'Website Form',
+        sub_source: 'Become A Partner Page'
+    };
+
+    if (submissionType === 'initial_submission') {
+        salesmaxData.lead_type = 'DSA Registration';
+        salesmaxData.additional_info = JSON.stringify({
+            dsa_type: formData.dsa_type,
+            experience: formData.experience
+        });
+    } else if (submissionType === 'kyc_submission') {
+        salesmaxData.lead_type = 'DSA KYC Completion';
+        salesmaxData.additional_info = JSON.stringify({
+            account_holder_name: formData.account_holder_name,
+            account_number: formData.account_number,
+            ifsc_code: formData.ifsc_code,
+            payment_status: paymentDetails.paymentStatus,
+            payment_id: paymentDetails.paymentId,
+            plan_type: paymentDetails.planName,
+            amount_paid: paymentDetails.totalAmount
+        });
+    }
+    
+    // Try multiple submission methods
+    try {
+        // Method 1: Direct fetch with headers
+        let response = await tryDirectFetch(apiUrl, salesmaxData);
+        
+        // Method 2: If direct fetch fails, try with CORS proxy
+        if (!response.ok) {
+            console.log('Direct fetch failed, trying with CORS proxy');
+            response = await tryWithProxy(proxyUrl + apiUrl, salesmaxData);
+        }
+        
+        // Method 3: If still failing, try form submission
+        if (!response.ok) {
+            console.log('CORS proxy failed, trying form submission');
+            return await tryFormSubmission(apiUrl, salesmaxData);
+        }
+        
+        const responseData = await response.json();
+        console.log('Salesmax API response:', responseData);
+        salesmaxResponse = responseData;
+        return responseData;
+    } catch (error) {
+        console.error('All submission methods failed:', error);
+        throw error;
+    }
+}
+
+async function tryDirectFetch(url, data) {
+    try {
+        return await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+    } catch (error) {
+        console.error('Direct fetch failed:', error);
+        return { ok: false };
+    }
+}
+
+async function tryWithProxy(url, data) {
+    try {
+        return await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            body: JSON.stringify(data)
+        });
+    } catch (error) {
+        console.error('Proxy fetch failed:', error);
+        return { ok: false };
+    }
+}
+
+async function tryFormSubmission(url, data) {
+    return new Promise((resolve) => {
+        try {
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = url;
+            form.style.display = 'none';
+            
+            for (const key in data) {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = key;
+                input.value = typeof data[key] === 'object' 
+                    ? JSON.stringify(data[key]) 
+                    : data[key];
+                form.appendChild(input);
+            }
+            
+            document.body.appendChild(form);
+            form.submit();
+            
+            resolve({ status: 'submitted_via_form' });
+        } catch (error) {
+            console.error('Form submission failed:', error);
+            resolve({ ok: false });
+        }
+    });
+}
+
+// Handle Step 2 submission
+document.getElementById('step2SubmitBtn').addEventListener('click', async function(event) {
+    event.preventDefault();
+    
+    var inputs = document.querySelectorAll('#step2 input[required], #step2 select[required]');
+    var isValid = true;
+
+    inputs.forEach(function(input) {
+        if (!input.value.trim()) {
+            isValid = false;
+            input.style.borderColor = 'red';
+        } else {
+            input.style.borderColor = '#ccc';
+        }
+    });
+
+    if (isValid) {
+        // Show loading message
+        document.getElementById('loadingMessage').textContent = 'Submitting your details...';
+        document.getElementById('loadingMessage').style.display = 'block';
+        
+        // Collect form data
+        collectFormData();
+        
+        try {
+            // Submit to Salesmax API
+            await submitToSalesmax('initial_submission');
+            document.getElementById('loadingMessage').style.display = 'none';
+            nextStep(2);
+        } catch (error) {
+            document.getElementById('loadingMessage').style.display = 'none';
+            alert('Error submitting form. Please try again later.');
+            console.error('Submission error:', error);
+        }
+    } else {
+        alert('Please fill all required fields');
+    }
+});
+
+// Handle payment process
+document.getElementById('payButton').addEventListener('click', function(event) {
+    event.preventDefault();
+    
+    var paymentOption = document.querySelector('input[name="payment_option"]:checked').value;
+    var amount = 0;
+    var description = '';
+    
+    if (paymentOption === 'dsa') {
+        var dsaType = document.getElementById('dsa_type').value;
+        var baseAmount = 0;
+        
+        switch(dsaType) {
+            case 'individual':
+                baseAmount = 25999;
+                description = 'Individual Partner Onboarding Fee';
+                break;
+            case 'franchise':
+                baseAmount = 49999;
+                description = 'Franchise Partner Onboarding Fee';
+                break;
+            case 'whitelabel':
+                baseAmount = 499999;
+                description = 'Whitelabel Partner Onboarding Fee';
+                break;
+            default:
+                alert('Please select a valid DSA Type');
+                return;
+        }
+        
+        amount = Math.round(baseAmount * 1.18 * 100);
+        description += ' (₹' + baseAmount.toLocaleString('en-IN') + ' + 18% GST)';
+    } else {
+        var manualAmount = parseFloat(document.getElementById('manual_amount').value);
+        if (isNaN(manualAmount) || manualAmount === '') {
+            alert('Please enter a valid amount');
+            return;
+        }
+        if (manualAmount < 100) {
+            alert('Minimum payment amount is ₹100');
+            return;
+        }
+        
+        amount = Math.round(manualAmount * 1.18 * 100);
+        description = 'Custom Partner Onboarding Fee (₹' + manualAmount.toLocaleString('en-IN') + ' + 18% GST)';
+    }
+
+    var options = {
+        "key": "rzp_live_Jt9G6tt7exbhFq",
+        "amount": amount,
+        "currency": "INR",
+        "name": "Finova",
+        "description": description, 
+        "image": "https://ibb.co/Fktm15Kh",
+        "handler": function(response) {
+            paymentDetails.paymentId = response.razorpay_payment_id;
+            paymentDetails.paymentStatus = 'success';
+            alert('Payment successful! Payment ID: ' + response.razorpay_payment_id);
+            nextStep(3);
+        },
+        "prefill": {
+            "name": document.getElementById('fullname').value,
+            "email": document.getElementById('email').value,
+            "contact": document.getElementById('phone').value
+        },
+        "notes": {
+            "payment_type": paymentOption === 'dsa' ? 'dsa_plan' : 'custom_amount',
+            "base_amount": amount / 118 * 100,
+            "gst_amount": amount / 118 * 18,
+            "salesmax_reference": salesmaxResponse?.id || 'N/A'
+        },
+        "theme": {
+            "color": "#4e25c9"
+        }
+    };
+
+    var rzp1 = new Razorpay(options);
+    rzp1.open();
+});
+
+// Handle final submission with KYC details
+document.getElementById('finalSubmitBtn').addEventListener('click', async function(event) {
+    event.preventDefault();
+    
+    var inputs = document.querySelectorAll('#step4 input[required], #step4 select[required]');
+    var isValid = true;
+
+    inputs.forEach(function(input) {
+        if (!input.value.trim()) {
+            isValid = false;
+            input.style.borderColor = 'red';
+        } else {
+            input.style.borderColor = '#ccc';
+        }
+    });
+
+    if (isValid) {
+        // Show loading message
+        document.getElementById('loadingMessage').textContent = 'Submitting KYC details...';
+        document.getElementById('loadingMessage').style.display = 'block';
+        
+        // Collect KYC details
+        formData.account_holder_name = document.getElementById('account_holder_name').value;
+        formData.account_number = document.getElementById('account_number').value;
+        formData.ifsc_code = document.getElementById('ifsc_code').value;
+        
+        try {
+            // Submit KYC details to Salesmax
+            await submitToSalesmax('kyc_submission');
+            document.getElementById('loadingMessage').style.display = 'none';
+            submitFormSuccess();
+        } catch (error) {
+            document.getElementById('loadingMessage').style.display = 'none';
+            alert('Error submitting KYC details. Please try again later.');
+            console.error('KYC submission error:', error);
+        }
+    } else {
+        alert('Please fill all required fields');
+    }
+});
+
+function submitFormSuccess() {
+    document.getElementById('paymentForm').style.display = 'none';
+    document.getElementById('thankYouMessage').style.display = 'block';
+    
+    // Here you would typically redirect or show a success message
+    setTimeout(() => {
+        // Redirect to thank you page or dashboard
+        // window.location.href = '/thank-you';
+    }, 3000);
+}
+
+// Initialize the form
+document.addEventListener('DOMContentLoaded', function() {
+    selectPaymentOption('dsa');
+    updatePaymentDetails();
+    
+    document.getElementById('dsa_type').addEventListener('change', function() {
+        updatePaymentDetails();
+    });
+});
+</script>
+</body>
+</html>
